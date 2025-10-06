@@ -1,0 +1,148 @@
+<!-- Individual Donation Section Start -->
+<section class="individual_donation_section">
+  <div class="individual_donation_container">
+    <!-- Top Row: Text Left, Image Right -->
+    <div class="individual_donation_top">
+      <div class="individual_donation_text">
+        <h2>Support a Child in Need</h2>
+        <p>
+          Your contribution can bring education, food, and hope to children in Gaza. Every donation makes a difference and empowers young lives.
+        </p>
+      </div>
+      <div class="individual_donation_image">
+        <img src="https://picsum.photos/600/400?random=1" alt="Child Donation Image">
+      </div>
+    </div>
+
+    <!-- Bottom Text -->
+    <div class="individual_donation_bottom">
+      <p>
+        Join our mission to provide essential resources and opportunities to children who need it the most. Together, we can change lives and build a brighter future.
+      </p>
+    </div>
+
+    <!-- Call-to-Action Button -->
+    <div class="individual_donation_button">
+      <a href="#" class="donation_proceed_btn">Proceed for Donation</a>
+    </div>
+  </div>
+</section>
+<!-- Individual Donation Section End -->
+
+
+<style>
+
+/* Individual Donation Section */
+.individual_donation_section {
+  width: 100%;
+  padding: 80px 20px;
+  background-color: #ffffff;
+}
+
+.individual_donation_container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.individual_donation_top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.individual_donation_text {
+  flex: 1 1 500px;
+}
+
+.individual_donation_text h2 {
+  font-size: 36px;
+  color: #0B3857;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.individual_donation_text p {
+  font-size: 18px;
+  color: #666;
+  line-height: 1.6;
+}
+
+.individual_donation_image {
+  flex: 1 1 500px;
+}
+
+.individual_donation_image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Bottom text */
+.individual_donation_bottom p {
+  font-size: 18px;
+  color: #666;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Button */
+.individual_donation_button {
+  text-align: center;
+}
+
+.donation_proceed_btn {
+  display: inline-block;
+  background-color: #0B3857;
+  color: #fff;
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 18px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(11, 56, 87, 0.2);
+}
+
+.donation_proceed_btn:hover {
+  background-color: #144a8c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(11, 56, 87, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .individual_donation_top {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .individual_donation_text h2 {
+    font-size: 28px;
+  }
+
+  .individual_donation_text p,
+  .individual_donation_bottom p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .individual_donation_text h2 {
+    font-size: 24px;
+  }
+
+  .individual_donation_text p,
+  .individual_donation_bottom p {
+    font-size: 15px;
+  }
+}
+
+
+
+</style>

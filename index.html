@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sixteen Foundation</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+
+<!-- Navigation bar start  -->
+
+<header class="six_foundation_nav-header">
+    <div class="six_foundation_nav-container">
+        <div class="six_foundation_nav-logo">
+            <a href="#"><img src="img/SF-Logo-main-300x38-w.png" alt="Logo"></a>
+        </div>
+
+        <div class="six_foundation_nav-right">
+            <ul class="six_foundation_nav-menu">
+                <li class="six_foundation_nav-item"><a href="index.html" class="six_foundation_nav-link">Home</a></li>
+                <li class="six_foundation_nav-item"><a href="Donation.html" class="six_foundation_nav-link">Cause</a></li>
+                <li class="six_foundation_nav-item"><a href="Podcast.html" class="six_foundation_nav-link">Podcast</a></li>
+
+
+                <li class="six_foundation_nav-item">
+                  
+                    <a href="Blog.html" class="six_foundation_nav-link">Blog</a>
+                    <!-- <ul class="six_foundation_nav-dropdown">
+                        <li><a href="Donation.html" class="six_foundation_nav-dropdown-item">Donation</a></li>
+                        <li><a href="#" class="six_foundation_nav-dropdown-item">Podcast</a></li>
+                        <li><a href="#" class="six_foundation_nav-dropdown-item">Event</a></li>
+                    </ul> -->
+                </li>
+                
+                <li class="six_foundation_nav-item"><a href="Events.html" class="six_foundation_nav-link">Events</a></li>
+                <li class="six_foundation_nav-item"><a href="About Us.html" class="six_foundation_nav-link">About</a></li>
+                <li class="six_foundation_nav-item"><a href="Contact.html" class="six_foundation_nav-link">Contact</a></li>
+            </ul>
+
+            <button class="six_foundation_nav-donate-btn" onclick="window.location.href='Donation.html'">Donate Now <i class="fas fa-arrow-right"></i></button>
+            <button class="six_foundation_nav-mobile-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="six_foundation_nav-mobile-menu">
+    <div class="six_foundation_nav-mobile-header">
+        <div class="six_foundation_nav-logo">
+            <a href="#"><img src="img/Mobile menu logo.png" alt="Logo"></a>
+        </div>
+        <button class="six_foundation_nav-mobile-close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="six_foundation_nav-mobile-nav">
+
+        <div class="six_foundation_nav-mobile-item"><a href="index.html" class="six_foundation_nav-mobile-link">Home</a></div>
+         
+        
+        <!-- <div class="six_foundation_nav-mobile-item">
+            <a href="Blog.html" class="six_foundation_nav-mobile-link">Blog</a>
+            <button class="six_foundation_nav-dropdown-toggle"><i class="fas fa-chevron-down"></i></button>
+            <div class="six_foundation_nav-mobile-dropdown">
+                <a href="#" class="six_foundation_nav-mobile-dropdown-item">Web Development</a>
+                <a href="#" class="six_foundation_nav-mobile-dropdown-item">App Development</a>
+                <a href="#" class="six_foundation_nav-mobile-dropdown-item">Marketing</a>
+            </div>
+        </div> -->
+
+
+        <div class="six_foundation_nav-mobile-item"><a href="Donation.html" class="six_foundation_nav-mobile-link">Cause</a></div>
+        <div class="six_foundation_nav-mobile-item"><a href="Podcast.html" class="six_foundation_nav-mobile-link">Podcast</a></div>
+        <div class="six_foundation_nav-mobile-item"><a href="Blog.html" class="six_foundation_nav-mobile-link">Blog</a></div>
+        <div class="six_foundation_nav-mobile-item"><a href="Events.html" class="six_foundation_nav-mobile-link">Events</a></div>
+        <div class="six_foundation_nav-mobile-item"><a href="#" class="six_foundation_nav-mobile-link">Contact</a></div>
+
+
+    </div>
+    <div class="six_foundation_nav-mobile-footer">
+        <button class="six_foundation_nav-mobile-donate-btn" onclick="window.location.href='Donation.html'">Donate Now <i class="fas fa-arrow-right"></i></button>
+    </div>
+</div>
+
+<div class="six_foundation_nav-backdrop"></div>
+
+<script>
+// Navbar scroll
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.six_foundation_nav-header');
+    if(window.scrollY > 50) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+});
+
+// Mobile menu
+const mobileToggle = document.querySelector('.six_foundation_nav-mobile-toggle');
+const mobileMenu = document.querySelector('.six_foundation_nav-mobile-menu');
+const mobileClose = document.querySelector('.six_foundation_nav-mobile-close');
+const backdrop = document.querySelector('.six_foundation_nav-backdrop');
+
+mobileToggle.addEventListener('click', () => {
+    mobileMenu.classList.add('active');
+    backdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+});
+
+function closeMobileMenu(){
+    mobileMenu.classList.remove('active');
+    backdrop.classList.remove('active');
+    document.body.style.overflow = '';
+    document.querySelectorAll('.six_foundation_nav-mobile-item').forEach(item => {
+        item.classList.remove('active');
+        const icon = item.querySelector('.six_foundation_nav-dropdown-toggle i');
+        if(icon) icon.style.transform = 'rotate(0)';
+    });
+}
+
+mobileClose.addEventListener('click', closeMobileMenu);
+backdrop.addEventListener('click', closeMobileMenu);
+
+// Mobile submenu toggle
+const dropdownToggles = document.querySelectorAll('.six_foundation_nav-dropdown-toggle');
+dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const parentItem = toggle.closest('.six_foundation_nav-mobile-item');
+
+        // Close other open submenus
+        document.querySelectorAll('.six_foundation_nav-mobile-item.active').forEach(item => {
+            if (item !== parentItem) {
+                item.classList.remove('active');
+                const icon = item.querySelector('.six_foundation_nav-dropdown-toggle i');
+                if(icon) icon.style.transform = 'rotate(0)';
+            }
+        });
+
+        // Toggle current submenu
+        parentItem.classList.toggle('active');
+
+        // Rotate chevron
+        const icon = toggle.querySelector('i');
+        icon.style.transform = parentItem.classList.contains('active') 
+            ? 'rotate(180deg)' 
+            : 'rotate(0)';
+    });
+});
+
+// Close mobile menu when clicking on links
+document.querySelectorAll('.six_foundation_nav-mobile-link, .six_foundation_nav-mobile-dropdown-item').forEach(link => {
+    link.addEventListener('click', (e) => {
+        if (!link.nextElementSibling || !link.nextElementSibling.classList.contains('six_foundation_nav-mobile-dropdown')) {
+            closeMobileMenu();
+        }
+    });
+});
+
+// Reset on resize
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 992) {
+        closeMobileMenu();
+    }
+});
+</script>
+
+
+
+
+<!-- Navigation bar stop -->
+
+
+
+<!-- hero Section Start -->
+
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>Your Impact, Our Support</h1>
+        <p>Smart, innovative solutions to help your donations make a bigger difference.</p>
+        <a href="#get-started" class="hero-btn">Get Started </a>
+    </div>
+</section>
+
+<!-- Hero Section Stop -->
+
+
+<!-- Row Section Start -->
+
+
+<div class="row">
+  <a href="#" class="card theme-early">
+    <h3>What We Do</h3>
+    <p>To assist existing educational institutions and allow them to provide high quality education for their learners. We believe every child matters.</p>
+  </a>
+
+  <a href="#" class="card theme-school">
+    <h3>What We Do?</h3>
+    <p>We support educational institutions with financial assistance for resources that enhance the education of children in the UK and abroad.</p>
+  </a>
+
+  <a href="#" class="card theme-futures">
+    <h3>How can you help?</h3>
+    <p>Join us and get involved through volunteering in our events, or through monetary donations and collectively spreading the word.</p>
+  </a>
+</div>
+
+
+<!-- Row Section Stop -->
+
+
+
+<!-- home donation Video Section Start -->
+
+
+<section class="home_pg_main_vdo">
+  <div class="container">
+    <h2 class="home_pg_main_vdo__heading">SEE HOW YOUR DONATIONS MAKE A DIFFERENCE</h2>
+    <p class="home_pg_main_vdo__text">
+      The Prophet Muhammad (PBUH) said: <br> "Give charity without delay, for it stands in the way of calamity." — Al-Tirmidhi 589 
+    </p>
+    <div class="home_pg_main_vdo__video-wrapper">
+      <img 
+        src="img/thumbnil.jpg" 
+        alt="Video Thumbnail" 
+        class="home_pg_main_vdo__thumbnail"
+      >
+      <button class="home_pg_main_vdo__play-btn">&#9654;</button>
+      <video class="home_pg_main_vdo__video" controls>
+        <source src="video/Kids Happy.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+</section>
+
+<script>
+const wrapper = document.querySelector('.home_pg_main_vdo__video-wrapper');
+const playBtn = wrapper.querySelector('.home_pg_main_vdo__play-btn');
+const thumbnail = wrapper.querySelector('.home_pg_main_vdo__thumbnail');
+const video = wrapper.querySelector('.home_pg_main_vdo__video');
+
+playBtn.addEventListener('click', () => {
+  thumbnail.style.display = 'none';
+  playBtn.style.display = 'none';
+  video.style.display = 'block';
+  video.play();
+});
+</script>
+
+
+<!-- home donation Video Section End -->
+
+
+<!-- home page donate section slider start -->
+
+
+<section class="home_pg_donation_sec_slider1">
+  <h2>LET US MAKE THE WORLD BETTER TOGETHER<br> DONATE FOR A GOOD CAUSE</h2>
+  <p class="home_pg_donation_sec_slider_section-text">
+    The Prophet Muhammad (PBUH) said: <br>
+    "When a person dies, his deeds come to an end except for three: Sadaqah Jariyah, knowledge which is beneficial, or a virtuous descendant who prays for him."
+  </p>
+
+  <div class="home_pg_donation_sec_slider1_wrapper">
+    <button class="home_pg_donation_sec_slider2_btn prev" aria-label="Previous">
+      <svg viewBox="0 0 24 24">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+    </button>
+
+    <div class="home_pg_donation_sec_slider1_container">
+      <div class="home_pg_donation_sec_slider2_track">
+
+
+
+         <a href="Support-For-Gaza.html" class="home_pg_donation_sec_slider2_card">
+          <img src="img/Support for Gaza Campaign.jpg" alt="Gaza Relief">
+          <h3>Support For Gaza</h3>
+      
+          <p>Lets join together for our Brothers in Gaza.</p>
+        </a>
+
+
+
+
+
+        <a href="Donation.html" class="home_pg_donation_sec_slider2_card">
+          <img src="img/gaza fundrising.jpg" alt="Gaza Relief">
+          <h3>VIGSA</h3>
+      
+          <p>Provide essential aid and support to families in need during times of crisis.</p>
+        </a>
+        <a href="Donation.html" class="home_pg_donation_sec_slider2_card">
+          <img src="img/Al zikran school.jpg" alt="Education Programs">
+          <h3>AL-Zakirin School</h3>
+          <p>Help children access quality education and learning resources for a brighter future.</p>
+        </a>
+        <a href="Donation.html" class="home_pg_donation_sec_slider2_card">
+          <img src="img/Madrasha Mauritania.jpg" alt="Madrasha Development">
+          <h3>Madrasahs 4 Mauritania</h3>
+          <p>Build and support Islamic educational institutions across communities.</p>
+        </a>
+        <a href="Donation.html" class="home_pg_donation_sec_slider2_card">
+          <img src="img/Apex Secondary School.jpg" alt="Orphan Care">
+          <h3>Apex Secondary School</h3>
+          <p>Provide shelter, food, and care for orphaned children who need our support.</p>
+        </a>
+        <a href="Donation.html" class="home_pg_donation_sec_slider2_card">
+          <img src="img/LoteTree-Primary School.jpg" alt="Community Development">
+          <h3>Lote Tree Primary School</h3>
+          <p>Support sustainable development projects in underserved communities worldwide.</p>
+        </a>
+
+
+      </div>
+    </div>
+
+    <button class="home_pg_donation_sec_slider2_btn next" aria-label="Next">
+      <svg viewBox="0 0 24 24">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <div class="home_pg_donation_sec_slider1_more_btn_wrapper">
+    <a href="Donation.html">
+      <button class="home_pg_donation_sec_slider2_more_btn">Donate Now</button>
+    </a>
+  </div>
+</section>
+
+
+<script>
+
+
+const track = document.querySelector('.home_pg_donation_sec_slider2_track');
+const prevBtn = document.querySelector('.home_pg_donation_sec_slider2_btn.prev');
+const nextBtn = document.querySelector('.home_pg_donation_sec_slider2_btn.next');
+const cards = document.querySelectorAll('.home_pg_donation_sec_slider2_card');
+
+let currentIndex = 0;
+let visibleCards = 3;
+
+function updateVisibleCards() {
+  const width = window.innerWidth;
+  if (width < 600) visibleCards = 1;
+  else if (width < 992) visibleCards = 2;
+  else visibleCards = 3;
+  updateSlider();
+}
+
+function updateSlider() {
+  const cardWidth = cards[0].offsetWidth;
+  const gap = 24;
+  const moveAmount = (cardWidth + gap) * currentIndex;
+  track.style.transform = `translateX(-${moveAmount}px)`;
+  prevBtn.disabled = currentIndex === 0;
+  nextBtn.disabled = currentIndex >= cards.length - visibleCards;
+}
+
+nextBtn.addEventListener('click', () => {
+  if (currentIndex < cards.length - visibleCards) {
+    currentIndex++;
+    updateSlider();
+  }
+});
+
+prevBtn.addEventListener('click', () => {
+  if (currentIndex > 0) {
+    currentIndex--;
+    updateSlider();
+  }
+});
+
+window.addEventListener('resize', updateVisibleCards);
+window.addEventListener('load', updateVisibleCards);
+
+
+
+</script>
+
+
+<!-- home page donate section slider stop -->
+
+
+
+<!-- Feature a Campaign Section Start -->
+ 
+<section class="home_pg_campaign_feature_section">
+  <div class="home_pg_campaign_feature_bg">
+    <div class="home_pg_campaign_feature_content">
+
+  
+      <h2 class="home_pg_campaign_feature_heading">
+        Every Child has a right of
+        <span class="home_pg_campaign_feature_highlight">Education</span>
+      </h2>
+
+
+      <!-- <a href="#" class="home_pg_campaign_feature_btn">Donate Now</a> -->
+    </div>
+  </div>
+</section>
+
+<!-- Feature a Campaign Section End -->
+
+
+
+
+
+<!-- home page donate section ways start -->
+
+<section class="home_pg_donate_more_way_section">
+  <div class="home_pg_donate_more_way_container">
+    <div class="home_pg_donate_more_way_inner">
+      
+      <div class="home_pg_donate_more_way_title">
+        <h2>More Ways to Donate</h2>
+      </div>
+
+      <div class="home_pg_donate_more_way_grid">
+        <!-- Donation Item 1 -->
+        <div class="home_pg_donate_more_way_card">
+          <div class="home_pg_donate_more_way_icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <h3>Over the Phone</h3>
+          <p>To donate over the phone, Call: 0161 302 7888 and ask for the fundraising team.</p>
+        </div>
+
+        <!-- Donation Item 2 -->
+        <div class="home_pg_donate_more_way_card">
+          <div class="home_pg_donate_more_way_icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3>By Cheque</h3>
+          <p>To donate by Cheque, please make it payable to Global Rahmah Foundation and send to: Unit 21, Waters Edge Business Park, Modwen Road, Salford, Manchester, M5 3EZ.</p>
+        </div>
+
+        <!-- Donation Item 3 -->
+        <div class="home_pg_donate_more_way_card">
+          <div class="home_pg_donate_more_way_icon">
+            <i class="fas fa-university"></i>
+          </div>
+          <h3>By Bank Transfer</h3>
+          <p>To donate by Bank, please use account name Global Rahmah Foundation, Sort code: 30-90-89, Account Number: 26800563.</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+
+<!-- home page donate section ways stop -->
+
+
+
+
+<!-- home page timeline section start -->
+
+
+<section class="history-section">
+  <div class="content-wrapper">
+    <h2>Our History</h2>
+    <p class="section-text" id="history-text">
+      Check out the key milestones of our journey over the years.
+    </p>
+
+    <div class="timeline" id="timeline">
+      <div class="timeline-item active" data-index="0"><div class="year">1994</div></div>
+      <div class="timeline-item" data-index="1"><div class="year">2006</div></div>
+      <div class="timeline-item" data-index="2"><div class="year">2013</div></div>
+      <div class="timeline-item" data-index="3"><div class="year">2019</div></div>
+      <div class="timeline-item" data-index="4"><div class="year">2022</div></div>
+      <div class="timeline-item" data-index="5"><div class="year">2023</div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const historyTexts = [
+    "In 1994, our organization was founded with a mission to bring positive change.",
+    "In 2006, we expanded our services to reach new communities.",
+    "In 2013, we launched several key initiatives to empower local youth.",
+    "In 2019, we celebrated 25 years of impact and growth.",
+    "In 2022, we started an international outreach program.",
+    "In 2023, we introduced innovative solutions to further our mission."
+  ];
+
+  const textEl = document.getElementById('history-text');
+  const timelineItems = document.querySelectorAll('.timeline-item');
+
+  timelineItems.forEach(item => {
+    item.addEventListener('click', () => {
+      timelineItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      const index = item.dataset.index;
+      textEl.style.opacity = 0;
+      setTimeout(() => {
+        textEl.textContent = historyTexts[index];
+        textEl.style.opacity = 1;
+      }, 200);
+    });
+  });
+</script>
+
+
+<!-- Home page timeline section stop -->
+
+
+
+
+
+
+<!-- Home Page podcast section start -->
+
+
+
+<div class="home_pd_pod-section_bg">
+
+  <section class="home_pd_pod-section">
+
+    <div class="home_pd_pod-hero">
+      <div class="home_pd_pod-text">
+        <h2>Our Podcast Sessions</h2>
+        <p>Join us in this inspiring session where we talk about the power of giving back as students. From real-life stories to impactful interviews, we explore how student-led donations are making a difference in communities.</p>
+      </div>
+
+      <!-- Hero Video with Thumbnail & Play Button -->
+      <div class="home_pd_pod-video-wrapper">
+        <img src="img/Podcast Thumbnil.bmp" alt="Video Thumbnail" class="home_pd_pod-video-thumbnail">
+        <button class="home_pd_pod-video-play-btn">&#9654;</button>
+        <video class="home_pd_pod-video" controls>
+          <source src="video/Podcast Video.mov" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+<!-- Upcoming Episodes -->
+
+   <div class="home_pg_pod_sec_upcoming_episode1_wrapper">
+
+<section class="home_pg_pod_sec_upcoming_episode1">
+  <h2>Upcoming Episodes</h2>
+  <!-- <p class="home_pg_pod_sec_upcoming_episode1_text">
+    Stay updated with our latest news, stories, and insights on student-led initiatives and community impact.
+  </p> -->
+
+  <div class="home_pg_pod_sec_upcoming_episode1_wrapper_inner">
+    <button class="home_pg_pod_sec_upcoming_episode1_btn1 prev" aria-label="Previous">
+      <svg viewBox="0 0 24 24">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+    </button>
+
+    <div class="home_pg_pod_sec_upcoming_episode1_container">
+      <div class="home_pg_pod_sec_upcoming_episode1_track">
+
+        <a href="Sixteen-Foundation-Scholarships-Blog.html" class="home_pg_pod_sec_upcoming_episode1_card">
+          <img src="img/Podcast 1.jpg" alt="Blog 1">
+          <h3>Summer Event</h3>
+          <p>With the help of our late parent's inheritance, we have been able to set up a small scale scholarship scheme. This schem...</p>
+        </a>
+        <a href="Teaching-&-Life-In-Middel-East-Blog.html" class="home_pg_pod_sec_upcoming_episode1_card">
+          <img src="img/Podcast 2.jpg" alt="Blog 2">
+          <h3>Ramadan Event</h3>
+          <p>Many Muslims in the UK dream of a better life in the Middle East, better weather, a chance to experience another culture...</p>
+        </a>
+        <a href="Sixteen-Foundation-Volunteers-Blog.html" class="home_pg_pod_sec_upcoming_episode1_card">
+          <img src="img/Podcast 3.jpg" alt="Blog 3">
+          <h3>Experience of <br> Schooling</h3>
+          <p>Sixteen Foundation work with friends and family to run events and ensure that the fundraisers run smoothly. These volunt...</p>
+        </a>
+
+        <a href="Sixteen-Foundation-Causes-Blog.html" class="home_pg_pod_sec_upcoming_episode1_card">
+          <img src="img/Podcast 4.jpg" alt="Blog 1">
+          <h3>Share your<br>Plans</h3>
+          <p>In Ramadhan 2022 we had the privilege in supporting Darul Ihsan and their continuation to support young orphans...</p>
+        </a>
+      
+       
+
+      </div>
+    </div>
+
+    <button class="home_pg_pod_sec_upcoming_episode1_btn2 next" aria-label="Next">
+      <svg viewBox="0 0 24 24">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <div class="home_pg_pod_sec_upcoming_episode1_more_btn_wrapper">
+    <a href="Podcast.html">
+      <button class="home_pg_pod_sec_upcoming_episode1_more_btn">Watch Our Podcast</button>
+    </a>
+  </div>
+</section>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const track = document.querySelector('.home_pg_pod_sec_upcoming_episode1_track');
+  const prevBtn = document.querySelector('.home_pg_pod_sec_upcoming_episode1_btn1.prev');
+  const nextBtn = document.querySelector('.home_pg_pod_sec_upcoming_episode1_btn2.next');
+  const cards = document.querySelectorAll('.home_pg_pod_sec_upcoming_episode1_card');
+
+  let currentIndex = 0;
+  let visibleCards = 3;
+
+  function updateVisibleCards() {
+    const width = window.innerWidth;
+    if (width < 600) visibleCards = 1;
+    else if (width < 992) visibleCards = 2;
+    else visibleCards = 3;
+    updateSlider();
+  }
+
+  function updateSlider() {
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 24;
+    const moveAmount = (cardWidth + gap) * currentIndex;
+    track.style.transform = `translateX(-${moveAmount}px)`;
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= cards.length - visibleCards;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (currentIndex < cards.length - visibleCards) {
+      currentIndex++;
+      updateSlider();
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateSlider();
+    }
+  });
+
+  window.addEventListener('resize', updateVisibleCards);
+  updateVisibleCards(); // initial call
+});
+</script>
+
+
+<!-- upcoming episodes -->
+
+  </section>
+
+
+</div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const heroWrapper = document.querySelector('.home_pd_pod-video-wrapper');
+  const video = heroWrapper.querySelector('.home_pd_pod-video');
+  const playBtn = heroWrapper.querySelector('.home_pd_pod-video-play-btn');
+  const thumbnail = heroWrapper.querySelector('.home_pd_pod-video-thumbnail');
+
+  // If no thumbnail, show video automatically
+  if (!thumbnail) {
+    video.style.display = 'block';
+    if (playBtn) playBtn.style.display = 'none';
+  }
+
+  if (playBtn) {
+    playBtn.addEventListener('click', () => {
+      // Show video first
+      video.style.display = 'block';
+
+      // Hide thumbnail & play button
+      if (thumbnail) thumbnail.style.display = 'none';
+      playBtn.style.display = 'none';
+
+      // Play video
+      video.play().catch(err => {
+        console.log('Video play was blocked:', err);
+      });
+    });
+  }
+});
+</script>
+
+
+
+<!-- Home page podcast section stop -->
+
+
+<!-- Home Page Events display Section Start -->
+
+
+<section class="home_pg_event_display_section1">
+  <div class="home_pg_event_display_section2">
+    <h2 class="home_pg_event_display_section3">Upcoming Events</h2>
+    <div class="home_pg_event_display_section4">
+
+      <!-- Event Card 1 -->
+      <div class="home_pg_event_display_section5">
+        <div class="home_pg_event_display_section6">
+          <img src="img/goals for gaza1.jpg" alt="Food Drive Event" class="home_pg_event_display_section7">
+        </div>
+        <h3 class="home_pg_event_display_section8">Goals for Gaza 2025</h3>
+        <p class="home_pg_event_display_section9"><i class="fa-solid fa-calendar-days"></i> August 16, 2025</p>
+        <p class="home_pg_event_display_section10"><i class="fa-solid fa-location-dot"></i> London, UK</p>
+        <p class="home_pg_event_display_section11">
+          Join us in distributing food packages to underprivileged families. Volunteers and donations are welcome!
+        </p>
+        <a href="Goals-for-Gaza-2025.html" class="home_pg_event_display_section12">Learn More</a>
+      </div>
+
+      <!-- Event Card 2 -->
+      <div class="home_pg_event_display_section5">
+        <div class="home_pg_event_display_section6">
+          <img src="img/Totes 4 Textbooks 2025.jpg" alt="Blood Donation Camp" class="home_pg_event_display_section7">
+        </div>
+        <h3 class="home_pg_event_display_section8">Totes 4 Textbooks 2025</h3>
+        <p class="home_pg_event_display_section9"><i class="fa-solid fa-calendar-days"></i> August 3</p>
+        <p class="home_pg_event_display_section10"><i class="fa-solid fa-location-dot"></i> London, UK</p>
+        <p class="home_pg_event_display_section11">
+          A life-saving initiative where you can donate blood and help save lives in hospitals across the region.
+        </p>
+        <a href="Totes-4-Textbooks-2025.html" class="home_pg_event_display_section12">Learn More</a>
+      </div>
+
+      <!-- Event Card 3 -->
+      <div class="home_pg_event_display_section5">
+        <div class="home_pg_event_display_section6">
+          <img src="img/event3.jpg" alt="Winter Clothing Drive" class="home_pg_event_display_section7">
+        </div>
+        <h3 class="home_pg_event_display_section8">10k Fun Run 2023</h3>
+        <p class="home_pg_event_display_section9"><i class="fa-solid fa-calendar-days"></i> August 20, 2023</p>
+        <p class="home_pg_event_display_section10"><i class="fa-solid fa-location-dot"></i> London, UK</p>
+        <p class="home_pg_event_display_section11">
+          Help us collect and distribute warm clothes to those in need during the winter season.
+        </p>
+        <a href="10K-Fun-Run-2023.html" class="home_pg_event_display_section12">Learn More</a>
+      </div>
+
+
+
+    </div>
+  </div>
+
+  <div class="home_pg_event_sec_more_button_wrapper">
+    <a href="Events.html">
+      <button class="home_pg_event_sec_more_button">View Events</button>
+    </a>
+</div>
+
+
+
+</section>
+
+
+<!-- Home Page Events display Section End -->
+
+
+
+<!-- Home Page Blog Section Start  -->
+
+
+<div class="home_pg_blog_section_bg">
+
+<section class="home_pg_blog_sec_slider1">
+  <h2>OUR LATEST BLOGS</h2>
+  <p class="home_pg_blog_sec_slider_section-text">
+    Stay updated with our latest news, stories, and insights on student-led initiatives and community impact.
+  </p>
+
+  <div class="home_pg_blog_sec_slider1_wrapper">
+    <button class="home_pg_blog_sec_slider2_btn prev" aria-label="Previous">
+      <svg viewBox="0 0 24 24">
+        <line x1="19" y1="12" x2="5" y2="12"></line>
+        <polyline points="12 19 5 12 12 5"></polyline>
+      </svg>
+    </button>
+
+    <div class="home_pg_blog_sec_slider1_container">
+      <div class="home_pg_blog_sec_slider2_track">
+
+        <a href="Sixteen-Foundation-Scholarships-Blog.html" class="home_pg_blog_sec_slider2_card">
+          <img src="img/sixteen foundation scholarship blog.jpg" alt="Blog 1">
+          <h3>Sixteen Foundation Scholarships</h3>
+          <p>With the help of our late parent's inheritance, we have been able to set up a small scale scholarship scheme. This schem...</p>
+        </a>
+
+        <a href="Teaching-&-Life-In-Middel-East-Blog.html" class="home_pg_blog_sec_slider2_card">
+          <img src="img/Teaching in Middle east blog.jpg" alt="Blog 2">
+          <h3>Teaching and Life in the Middle East</h3>
+          <p>Many Muslims in the UK dream of a better life in the Middle East, better weather, a chance to experience another culture...</p>
+        </a>
+
+
+        <a href="Sixteen-Foundation-Volunteers-Blog.html" class="home_pg_blog_sec_slider2_card">
+          <img src="img/sixteen foundation volunteers.jpg" alt="Blog 3">
+          <h3>Sixteen Foundation Volunteers</h3>
+          <p>Sixteen Foundation work with friends and family to run events and ensure that the fundraisers run smoothly. These volunt...</p>
+        </a>
+
+
+        <a href="Sixteen-Foundation-Causes-Blog.html" class="home_pg_blog_sec_slider2_card">
+          <img src="img/Sixteen Foundation Causes Blog.jpg" alt="Blog 1">
+          <h3>Sixteen Foundation Causes</h3>
+          <p>In Ramadhan 2022 we had the privilege in supporting Darul Ihsan and their continuation to support young orphans and thei...</p>
+        </a>
+        <a href="Teaching-&-Motivation-Blog.html" class="home_pg_blog_sec_slider2_card">
+          <img src="img/Teaching and Motivation Blog.jpg" alt="Blog 2">
+          <h3>Teaching and Motivation</h3>
+          <p>There are a couple of questions which I hear fairly regularly within my classroom during Maths relating to motivation fo...</p>
+        </a>
+        <a href="Tech-&-Educational-Benefits-Blog.html" class="home_pg_blog_sec_slider2_card">
+          <img src="img/Teaching and Educational Benefits Blog.jpg" alt="Blog 3">
+          <h3>Tech and Educational Benefits</h3>
+          <p>Technology has undoubtedly changed the way we learn and teach. It offers resources and access for teachers who can deliv...</p>
+        </a>
+
+
+        <a href="Empower-Through-Education-Blog.html" class="home_pg_blog_sec_slider2_card">
+          <img src="img/Empower Through Education.jpg" alt="Blog 3">
+          <h3>Empower through Education</h3>
+          <p>In some cases, it is arguable that education broadens a child's horizon and benefits the community and subsequently, the...</p>
+        </a>
+
+
+        <a href="Education-Matters-Blog.html" class="home_pg_blog_sec_slider2_card">
+          <img src="img/Education Matters Blog.jpg" alt="Blog 3">
+          <h3>Education Matters</h3>
+          <p>Education plays a significant role in every person’s life. It helps build character, opinions and intellect. Each indivi...</p>
+        </a>
+
+        <a href="Sixteen-Foundation-Events-Blog.html" class="home_pg_blog_sec_slider2_card">
+          <img src="img/sixteen foundation blog 3.jpg" alt="Blog 3">
+          <h3>Sixteen Foundation Events</h3>
+          <p>We decided as a collective to set up two events a year. The first event would coincide with Ramadhan and would comprise ...</p>
+        </a>
+
+        <a href="Schools-Out-Forever-Blog.html" class="home_pg_blog_sec_slider2_card">
+          <img src="img/Schools Out Forever Blog.jpg" alt="Blog 3">
+          <h3>School’s Out Forever</h3>
+          <p>I start walking to school, savouring the crisp Autumn air, scanning the stunning scenery filled with vibrant oranges and...</p>
+        </a>
+
+
+
+      </div>
+    </div>
+
+    <button class="home_pg_blog_sec_slider2_btn next" aria-label="Next">
+      <svg viewBox="0 0 24 24">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <div class="home_pg_blog_sec_slider1_more_btn_wrapper">
+    <a href="Blog.html">
+      <button class="home_pg_blog_sec_slider2_more_btn">More Blogs</button>
+    </a>
+  </div>
+</section>
+
+</div>
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+  const track = document.querySelector('.home_pg_blog_sec_slider2_track');
+  const prevBtn = document.querySelector('.home_pg_blog_sec_slider2_btn.prev');
+  const nextBtn = document.querySelector('.home_pg_blog_sec_slider2_btn.next');
+  const cards = document.querySelectorAll('.home_pg_blog_sec_slider2_card');
+
+  let currentIndex = 0;
+  let visibleCards = 3;
+
+  function updateVisibleCards() {
+    const width = window.innerWidth;
+    if (width < 600) visibleCards = 1;
+    else if (width < 992) visibleCards = 2;
+    else visibleCards = 3;
+    updateSlider();
+  }
+
+  function updateSlider() {
+    const cardWidth = cards[0].offsetWidth;
+    const gap = 24;
+    const moveAmount = (cardWidth + gap) * currentIndex;
+    track.style.transform = `translateX(-${moveAmount}px)`;
+    prevBtn.disabled = currentIndex === 0;
+    nextBtn.disabled = currentIndex >= cards.length - visibleCards;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (currentIndex < cards.length - visibleCards) {
+      currentIndex++;
+      updateSlider();
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateSlider();
+    }
+  });
+
+  window.addEventListener('resize', updateVisibleCards);
+  updateVisibleCards(); // initial call
+});
+
+</script>
+
+
+<!-- Home Page Blog Section Stop -->
+
+
+
+
+
+
+<!-- Footer Start -->
+
+
+
+<footer class="don-ft">
+  <div class="don-ft-inner">
+
+    <!-- Widgets Grid -->
+    <div class="don-ft-grid">
+
+      <!-- About -->
+      <div class="don-ft-widget about">
+        <a href="index.html"><img src="img/SF-Logo-main-300x38-w.png" alt="Donation Site Logo" class="don-ft-logo"></a>
+        <p>We are a Community Organisation run by a group of volunteers.  We have a strong purpose of empowering lives through education.</p>
+        <div class="don-ft-social">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="don-ft-widget links">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="About Us.html">About Us</a></li>
+          <li><a href="Blog.html">Our Causes</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="don-ft-widget contact">
+        <h5>Contact Us</h5>
+        <ul>
+          <li><i class="fa-regular fa-envelope"></i><a href="mailto:info@donationsite.org">info@sixteenfoundation.org</a></li>
+          <li><i class="fa-solid fa-phone"></i><a href="tel:+123456789">+1 234 567 89</a></li>
+          <!-- <li><i class="fa-solid fa-location-dot"></i>123 Hope Street, City, Country</li> -->
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="don-ft-widget newsletter">
+        <h5>Newsletter</h5>
+        <p>Subscribe to get updates on our missions and stories of change.</p>
+        <form class="newsletter-form" action="newsletter.php" method="post">
+          <input type="email" name="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+
+      <!-- Legal -->
+      <div class="don-ft-widget legal">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms & Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="don-ft-copy">
+      <p>© 2025 Donation Site. All rights reserved.</p>
+    </div>
+
+  </div>
+</footer>
+
+
+
+
+<!-- footer stop -->
+
+
+
+</body>
+</html>
+
+
+
+

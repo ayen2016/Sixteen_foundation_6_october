@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sixteen Foundation</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+
+<!-- Navigation bar start  -->
+
+
+<header class="six_foundation_nav-header">
+    <div class="six_foundation_nav-container">
+        <div class="six_foundation_nav-logo">
+            <a href="#"><img src="img/SF-Logo-main-300x38-w.png" alt="Logo"></a>
+        </div>
+
+        <div class="six_foundation_nav-right">
+            <ul class="six_foundation_nav-menu">
+                <li class="six_foundation_nav-item"><a href="index.html" class="six_foundation_nav-link">Home</a></li>
+                <li class="six_foundation_nav-item"><a href="Donation.html" class="six_foundation_nav-link">Cause</a></li>
+                <li class="six_foundation_nav-item"><a href="Podcast.html" class="six_foundation_nav-link">Podcast</a></li>
+
+
+                <li class="six_foundation_nav-item">
+                  
+                    <a href="Blog.html" class="six_foundation_nav-link">Blog</a>
+                    <!-- <ul class="six_foundation_nav-dropdown">
+                        <li><a href="Donation.html" class="six_foundation_nav-dropdown-item">Donation</a></li>
+                        <li><a href="#" class="six_foundation_nav-dropdown-item">Podcast</a></li>
+                        <li><a href="#" class="six_foundation_nav-dropdown-item">Event</a></li>
+                    </ul> -->
+                </li>
+                
+                <li class="six_foundation_nav-item"><a href="Events.html" class="six_foundation_nav-link">Events</a></li>
+                <li class="six_foundation_nav-item"><a href="About Us.html" class="six_foundation_nav-link">About</a></li>
+                <li class="six_foundation_nav-item"><a href="Contact.html" class="six_foundation_nav-link">Contact</a></li>
+            </ul>
+
+            <button class="six_foundation_nav-donate-btn" onclick="window.location.href='Donation.html'">Donate Now <i class="fas fa-arrow-right"></i></button>
+            <button class="six_foundation_nav-mobile-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="six_foundation_nav-mobile-menu">
+    <div class="six_foundation_nav-mobile-header">
+        <div class="six_foundation_nav-logo">
+            <a href="#"><img src="img/Mobile menu logo.png" alt="Logo"></a>
+        </div>
+        <button class="six_foundation_nav-mobile-close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="six_foundation_nav-mobile-nav">
+
+        <div class="six_foundation_nav-mobile-item"><a href="index.html" class="six_foundation_nav-mobile-link">Home</a></div>
+         
+        
+        <!-- <div class="six_foundation_nav-mobile-item">
+            <a href="Blog.html" class="six_foundation_nav-mobile-link">Blog</a>
+            <button class="six_foundation_nav-dropdown-toggle"><i class="fas fa-chevron-down"></i></button>
+            <div class="six_foundation_nav-mobile-dropdown">
+                <a href="#" class="six_foundation_nav-mobile-dropdown-item">Web Development</a>
+                <a href="#" class="six_foundation_nav-mobile-dropdown-item">App Development</a>
+                <a href="#" class="six_foundation_nav-mobile-dropdown-item">Marketing</a>
+            </div>
+        </div> -->
+
+
+        <div class="six_foundation_nav-mobile-item"><a href="Donation.html" class="six_foundation_nav-mobile-link">Cause</a></div>
+        <div class="six_foundation_nav-mobile-item"><a href="Podcast.html" class="six_foundation_nav-mobile-link">Podcast</a></div>
+        <div class="six_foundation_nav-mobile-item"><a href="Blog.html" class="six_foundation_nav-mobile-link">Blog</a></div>
+        <div class="six_foundation_nav-mobile-item"><a href="Events.html" class="six_foundation_nav-mobile-link">Events</a></div>
+        <div class="six_foundation_nav-mobile-item"><a href="#" class="six_foundation_nav-mobile-link">Contact</a></div>
+
+
+    </div>
+    <div class="six_foundation_nav-mobile-footer">
+        <button class="six_foundation_nav-mobile-donate-btn" onclick="window.location.href='Donation.html'">Donate Now <i class="fas fa-arrow-right"></i></button>
+    </div>
+</div>
+
+<div class="six_foundation_nav-backdrop"></div>
+
+<script>
+// Navbar scroll
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.six_foundation_nav-header');
+    if(window.scrollY > 50) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+});
+
+// Mobile menu
+const mobileToggle = document.querySelector('.six_foundation_nav-mobile-toggle');
+const mobileMenu = document.querySelector('.six_foundation_nav-mobile-menu');
+const mobileClose = document.querySelector('.six_foundation_nav-mobile-close');
+const backdrop = document.querySelector('.six_foundation_nav-backdrop');
+
+mobileToggle.addEventListener('click', () => {
+    mobileMenu.classList.add('active');
+    backdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+});
+
+function closeMobileMenu(){
+    mobileMenu.classList.remove('active');
+    backdrop.classList.remove('active');
+    document.body.style.overflow = '';
+    document.querySelectorAll('.six_foundation_nav-mobile-item').forEach(item => {
+        item.classList.remove('active');
+        const icon = item.querySelector('.six_foundation_nav-dropdown-toggle i');
+        if(icon) icon.style.transform = 'rotate(0)';
+    });
+}
+
+mobileClose.addEventListener('click', closeMobileMenu);
+backdrop.addEventListener('click', closeMobileMenu);
+
+// Mobile submenu toggle
+const dropdownToggles = document.querySelectorAll('.six_foundation_nav-dropdown-toggle');
+dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const parentItem = toggle.closest('.six_foundation_nav-mobile-item');
+
+        // Close other open submenus
+        document.querySelectorAll('.six_foundation_nav-mobile-item.active').forEach(item => {
+            if (item !== parentItem) {
+                item.classList.remove('active');
+                const icon = item.querySelector('.six_foundation_nav-dropdown-toggle i');
+                if(icon) icon.style.transform = 'rotate(0)';
+            }
+        });
+
+        // Toggle current submenu
+        parentItem.classList.toggle('active');
+
+        // Rotate chevron
+        const icon = toggle.querySelector('i');
+        icon.style.transform = parentItem.classList.contains('active') 
+            ? 'rotate(180deg)' 
+            : 'rotate(0)';
+    });
+});
+
+// Close mobile menu when clicking on links
+document.querySelectorAll('.six_foundation_nav-mobile-link, .six_foundation_nav-mobile-dropdown-item').forEach(link => {
+    link.addEventListener('click', (e) => {
+        if (!link.nextElementSibling || !link.nextElementSibling.classList.contains('six_foundation_nav-mobile-dropdown')) {
+            closeMobileMenu();
+        }
+    });
+});
+
+// Reset on resize
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 992) {
+        closeMobileMenu();
+    }
+});
+</script>
+
+
+
+
+<!-- Navigation bar stop -->
+
+
+
+<!-- Blog Page Hero Section Start -->
+
+<section class="home_pg_blog_hero">
+  <div class="home_pg_blog_hero_bg">
+    <div class="home_pg_blog_hero_content">
+      <h1>Our Blog</h1>
+      <p>Explore our latest stories, insights, and updates on student-led initiatives and community impact. Stay inspired and informed with our blog posts.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- Blog Page Hero Section Stop -->
+
+
+
+<!-- Home Page Blog Section Start  -->
+
+
+<div class="home_pg_blog_section_bg">
+
+
+<section class="home_pg_blog_section">
+  <h2>OUR LATEST BLOGS</h2>
+  <p class="section-text">Stay updated with our latest news, stories, and insights on student-led initiatives and community impact.</p>
+
+  <div class="home_pg_blog_grid">
+    <!-- Blog Card 1 -->
+
+
+    <div class="home_pg_blog_card">
+      <img src="img/sixteen foundation scholarship blog.jpg" alt="Blog 1">
+      <div class="content">
+        <h3>Sixteen Foundation Scholarships</h3>
+        <p class="excerpt">With the help of our late parent's inheritance, we have been able to set up a small scale scholarship scheme. This schem...</p>
+        <a href="Sixteen-Foundation-Scholarships-Blog.html"><button>Read More</button></a>
+
+      </div>
+    </div>
+
+
+    <div class="home_pg_blog_card">
+      <img src="img/Teaching in Middle east blog.jpg" alt="Blog 1">
+      <div class="content">
+        <h3>Teaching and Life in the Middle East</h3>
+        <p class="excerpt">Many Muslims in the UK dream of a better life in the Middle East, better weather, a chance to experience another culture...</p>
+        <a href="Teaching-&-Life-In-Middel-East-Blog.html"><button>Read More</button></a>
+
+      </div>
+    </div>
+
+
+
+
+
+
+    <div class="home_pg_blog_card">
+      <img src="img/sixteen foundation volunteers.jpg" alt="Blog 1">
+      <div class="content">
+        <h3>Sixteen Foundation Volunteers</h3>
+        <p class="excerpt">Sixteen Foundation work with friends and family to run events and ensure that the fundraisers run smoothly. These volunt...</p>
+        <a href="Sixteen-Foundation-Volunteers-Blog.html"><button>Read More</button></a>
+
+      </div>
+    </div>
+
+
+
+    <div class="home_pg_blog_card">
+      <img src="img/Sixteen Foundation Causes Blog.jpg" alt="Blog 1">
+      <div class="content">
+        <h3>Sixteen Foundation Causes</h3>
+        <p class="excerpt">In Ramadhan 2022 we had the privilege in supporting Darul Ihsan and their continuation to support young orphans and thei...</p>
+        <a href="Sixteen-Foundation-Causes-Blog.html"><button>Read More</button></a>
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Blog Card 2 -->
+    <div class="home_pg_blog_card">
+      <img src="img/Teaching and Motivation Blog.jpg" alt="Blog 2">
+      <div class="content">
+        <h3>Teaching and Motivation</h3>
+        <p class="excerpt">There are a couple of questions which I hear fairly regularly within my classroom during Maths relating to motivation fo...</p>
+        <a href="Teaching-&-Motivation-Blog.html"><button>Read More</button></a>
+
+      </div>
+    </div>
+
+    <!-- Blog Card 3 -->
+    <div class="home_pg_blog_card">
+      <img src="img/Teaching and Educational Benefits Blog.jpg" alt="Blog 3">
+      <div class="content">
+        <h3>Tech and Educational Benefits</h3>
+        <p class="excerpt">Technology has undoubtedly changed the way we learn and teach. It offers resources and access for teachers who can deliv...</p>
+        <a href="Tech-&-Educational-Benefits-Blog.html"><button>Read More</button></a>
+      
+      </div>
+    </div>
+
+    
+    <div class="home_pg_blog_card">
+      <img src="img/Empower Through Education.jpg" alt="Blog 4">
+      <div class="content">
+        <h3>Empower through Education</h3>
+        <p class="excerpt">In some cases, it is arguable that education broadens a child's horizon and benefits the community and subsequently, the...</p>
+        <a href="Empower-Through-Education-Blog.html"><button>Read More</button></a>
+      </div>
+    </div>
+
+
+     <div class="home_pg_blog_card">
+      <img src="img/Education Matters Blog.jpg" alt="Blog 5">
+      <div class="content">
+        <h3>Education Matters</h3>
+        <p class="excerpt">Education plays a significant role in every person’s life. It helps build character, opinions and intellect. Each indivi...</p>
+        <a href="Education-Matters-Blog.html"><button>Read More</button></a>
+      </div>
+    </div>
+
+   
+    <div class="home_pg_blog_card">
+      <img src="img/sixteen foundation blog 3.jpg" alt="Blog 5">
+      <div class="content">
+        <h3>Sixteen Foundation Events</h3>
+        <p class="excerpt">We decided as a collective to set up two events a year. The first event would coincide with Ramadhan and would comprise ...</p>
+        <a href="Sixteen-Foundation-Events-Blog.html"><button>Read More</button></a>
+      </div>
+    </div>
+
+    
+      <div class="home_pg_blog_card">
+      <img src="img/Schools Out Forever Blog.jpg" alt="Blog 5">
+      <div class="content">
+        <h3>School’s Out Forever</h3>
+        <p class="excerpt">I start walking to school, savouring the crisp Autumn air, scanning the stunning scenery filled with vibrant oranges and...</p>
+        <a href="Schools-Out-Forever-Blog.html"><button>Read More</button></a>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+
+</section>
+
+
+</div>
+
+
+<!-- Home Page Blog Section Stop -->
+
+
+
+
+
+
+
+<!-- Footer Start -->
+
+
+
+<footer class="don-ft">
+  <div class="don-ft-inner">
+
+    <!-- Widgets Grid -->
+    <div class="don-ft-grid">
+
+      <!-- About -->
+      <div class="don-ft-widget about">
+        <a href="index.html"><img src="img/SF-Logo-main-300x38-w.png" alt="Donation Site Logo" class="don-ft-logo"></a>
+        <p>We are a Community Organisation run by a group of volunteers.  We have a strong purpose of empowering lives through education.</p>
+        <div class="don-ft-social">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="don-ft-widget links">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="About Us.html">About Us</a></li>
+          <li><a href="Blog.html">Our Causes</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="don-ft-widget contact">
+        <h5>Contact Us</h5>
+        <ul>
+          <li><i class="fa-regular fa-envelope"></i><a href="mailto:info@donationsite.org">info@sixteenfoundation.org</a></li>
+          <li><i class="fa-solid fa-phone"></i><a href="tel:+123456789">+1 234 567 89</a></li>
+          <li><i class="fa-solid fa-location-dot"></i>123 Hope Street, City, Country</li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="don-ft-widget newsletter">
+        <h5>Newsletter</h5>
+        <p>Subscribe to get updates on our missions and stories of change.</p>
+        <form class="newsletter-form" action="newsletter.php" method="post">
+          <input type="email" name="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+
+      <!-- Legal -->
+      <div class="don-ft-widget legal">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms & Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="don-ft-copy">
+      <p>© 2025 Donation Site. All rights reserved.</p>
+    </div>
+
+  </div>
+</footer>
+
+
+
+
+<!-- footer stop -->
+
+
+</body>
+</html>

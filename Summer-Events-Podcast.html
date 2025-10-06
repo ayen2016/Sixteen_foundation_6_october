@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sixteen Foundation</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+
+<!-- Navigation bar start  -->
+
+
+<header class="six_foundation_nav-header">
+    <div class="six_foundation_nav-container">
+        <div class="six_foundation_nav-logo">
+            <a href="#"><img src="img/SF-Logo-main-300x38-w.png" alt="Logo"></a>
+        </div>
+
+        <div class="six_foundation_nav-right">
+            <ul class="six_foundation_nav-menu">
+                <li class="six_foundation_nav-item"><a href="index.html" class="six_foundation_nav-link">Home</a></li>
+                <li class="six_foundation_nav-item"><a href="Donation.html" class="six_foundation_nav-link">Cause</a></li>
+                <li class="six_foundation_nav-item"><a href="Podcast.html" class="six_foundation_nav-link">Podcast</a></li>
+
+
+                <li class="six_foundation_nav-item">
+                  
+                    <a href="Blog.html" class="six_foundation_nav-link">Blog</a>
+                    <!-- <ul class="six_foundation_nav-dropdown">
+                        <li><a href="Donation.html" class="six_foundation_nav-dropdown-item">Donation</a></li>
+                        <li><a href="#" class="six_foundation_nav-dropdown-item">Podcast</a></li>
+                        <li><a href="#" class="six_foundation_nav-dropdown-item">Event</a></li>
+                    </ul> -->
+                </li>
+                
+                <li class="six_foundation_nav-item"><a href="Events.html" class="six_foundation_nav-link">Events</a></li>
+                <li class="six_foundation_nav-item"><a href="About Us.html" class="six_foundation_nav-link">About</a></li>
+                <li class="six_foundation_nav-item"><a href="Contact.html" class="six_foundation_nav-link">Contact</a></li>
+            </ul>
+
+            <button class="six_foundation_nav-donate-btn"  onclick="window.location.href='Donation.html'">Donate Now <i class="fas fa-arrow-right"></i></button>
+            <button class="six_foundation_nav-mobile-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="six_foundation_nav-mobile-menu">
+    <div class="six_foundation_nav-mobile-header">
+        <div class="six_foundation_nav-logo">
+            <a href="#"><img src="img/Mobile menu logo.png" alt="Logo"></a>
+        </div>
+        <button class="six_foundation_nav-mobile-close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="six_foundation_nav-mobile-nav">
+
+        <div class="six_foundation_nav-mobile-item"><a href="index.html" class="six_foundation_nav-mobile-link">Home</a></div>
+         
+        
+        <!-- <div class="six_foundation_nav-mobile-item">
+            <a href="Blog.html" class="six_foundation_nav-mobile-link">Blog</a>
+            <button class="six_foundation_nav-dropdown-toggle"><i class="fas fa-chevron-down"></i></button>
+            <div class="six_foundation_nav-mobile-dropdown">
+                <a href="#" class="six_foundation_nav-mobile-dropdown-item">Web Development</a>
+                <a href="#" class="six_foundation_nav-mobile-dropdown-item">App Development</a>
+                <a href="#" class="six_foundation_nav-mobile-dropdown-item">Marketing</a>
+            </div>
+        </div> -->
+
+
+        <div class="six_foundation_nav-mobile-item"><a href="Donation.html" class="six_foundation_nav-mobile-link">Cause</a></div>
+        <div class="six_foundation_nav-mobile-item"><a href="Podcast.html" class="six_foundation_nav-mobile-link">Podcast</a></div>
+        <div class="six_foundation_nav-mobile-item"><a href="Blog.html" class="six_foundation_nav-mobile-link">Blog</a></div>
+        <div class="six_foundation_nav-mobile-item"><a href="Events.html" class="six_foundation_nav-mobile-link">Events</a></div>
+        <div class="six_foundation_nav-mobile-item"><a href="#" class="six_foundation_nav-mobile-link">Contact</a></div>
+
+
+    </div>
+    <div class="six_foundation_nav-mobile-footer">
+        <button class="six_foundation_nav-mobile-donate-btn" onclick="window.location.href='Donation.html'">Donate Now <i class="fas fa-arrow-right"></i></button>
+    </div>
+</div>
+
+<div class="six_foundation_nav-backdrop"></div>
+
+<script>
+// Navbar scroll
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.six_foundation_nav-header');
+    if(window.scrollY > 50) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+});
+
+// Mobile menu
+const mobileToggle = document.querySelector('.six_foundation_nav-mobile-toggle');
+const mobileMenu = document.querySelector('.six_foundation_nav-mobile-menu');
+const mobileClose = document.querySelector('.six_foundation_nav-mobile-close');
+const backdrop = document.querySelector('.six_foundation_nav-backdrop');
+
+mobileToggle.addEventListener('click', () => {
+    mobileMenu.classList.add('active');
+    backdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+});
+
+function closeMobileMenu(){
+    mobileMenu.classList.remove('active');
+    backdrop.classList.remove('active');
+    document.body.style.overflow = '';
+    document.querySelectorAll('.six_foundation_nav-mobile-item').forEach(item => {
+        item.classList.remove('active');
+        const icon = item.querySelector('.six_foundation_nav-dropdown-toggle i');
+        if(icon) icon.style.transform = 'rotate(0)';
+    });
+}
+
+mobileClose.addEventListener('click', closeMobileMenu);
+backdrop.addEventListener('click', closeMobileMenu);
+
+// Mobile submenu toggle
+const dropdownToggles = document.querySelectorAll('.six_foundation_nav-dropdown-toggle');
+dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const parentItem = toggle.closest('.six_foundation_nav-mobile-item');
+
+        // Close other open submenus
+        document.querySelectorAll('.six_foundation_nav-mobile-item.active').forEach(item => {
+            if (item !== parentItem) {
+                item.classList.remove('active');
+                const icon = item.querySelector('.six_foundation_nav-dropdown-toggle i');
+                if(icon) icon.style.transform = 'rotate(0)';
+            }
+        });
+
+        // Toggle current submenu
+        parentItem.classList.toggle('active');
+
+        // Rotate chevron
+        const icon = toggle.querySelector('i');
+        icon.style.transform = parentItem.classList.contains('active') 
+            ? 'rotate(180deg)' 
+            : 'rotate(0)';
+    });
+});
+
+// Close mobile menu when clicking on links
+document.querySelectorAll('.six_foundation_nav-mobile-link, .six_foundation_nav-mobile-dropdown-item').forEach(link => {
+    link.addEventListener('click', (e) => {
+        if (!link.nextElementSibling || !link.nextElementSibling.classList.contains('six_foundation_nav-mobile-dropdown')) {
+            closeMobileMenu();
+        }
+    });
+});
+
+// Reset on resize
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 992) {
+        closeMobileMenu();
+    }
+});
+</script>
+
+
+<!-- Navigation bar stop -->
+
+
+
+
+<style>
+
+/* hero section start */
+
+
+
+.individual_events_page_hero_section {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.individual_events_page_hero_bg {
+  margin: 0 auto;
+  padding: 200px 20px;
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('img/Podcast\ 1.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.individual_events_page_hero_content h1 {
+  font-size: 48px;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.individual_events_page_hero_content p {
+  font-size: 20px;
+  color: #ffffff;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+@media (max-width: 992px) {
+  .individual_events_page_hero_content h1 { font-size: 36px; }
+  .individual_events_page_hero_content p { font-size: 18px; }
+}
+
+@media (max-width: 600px) {
+  .individual_events_page_hero_content h1 { font-size: 28px; }
+  .individual_events_page_hero_content p { font-size: 16px; }
+  .individual_events_page_hero_bg { padding: 90px 15px; }
+}
+
+
+/* hero section stop */
+
+
+
+/* Individual Donation Section Start */
+
+.individual_donation_section {
+  width: 100%;
+  padding: 80px 20px;
+  background-color: #ffffff;
+}
+
+.individual_donation_container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.individual_donation_top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.individual_donation_text {
+  flex: 1 1 500px;
+}
+
+.individual_donation_text h2 {
+  font-size: 36px;
+  color: #0B3857;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.individual_donation_text p {
+  font-size: 18px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Video Wrapper */
+.individual_donation_video_wrapper {
+  position: relative;
+  flex: 1 1 500px; /* flex-basis for desktop */
+  cursor: pointer;
+}
+
+.individual_donation_video_thumbnail {
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: block;
+}
+
+.individual_donation_video_play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 60px;
+  color: #fff;
+  background: rgba(11, 56, 87, 0.7);
+  border: none;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.individual_donation_video_play:hover {
+  background: rgba(11, 56, 87, 0.9);
+}
+
+.individual_donation_video {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: none; /* initially hidden */
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .individual_donation_top {
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+  }
+
+  .individual_donation_text,
+  .individual_donation_video_wrapper {
+    flex: 0 0 auto; /* allow shrinking */
+    width: 100%;   /* full width on mobile */
+    text-align: center;
+  }
+
+  .individual_donation_text h2 {
+    font-size: 28px;
+  }
+
+  .individual_donation_text p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .individual_donation_top {
+    gap: 20px; /* reduce extra spacing */
+  }
+
+  .individual_donation_text h2 {
+    font-size: 24px;
+  }
+
+  .individual_donation_text p {
+    font-size: 15px;
+  }
+}
+
+/* Individual Donation Section Stop */
+
+
+
+
+</style>
+
+<!-- Blog Section Stop -->
+
+
+<!-- Events Page Hero Section Start -->
+
+
+  <section class="individual_events_page_hero_section">
+    <div class="individual_events_page_hero_bg">
+      <div class="individual_events_page_hero_content">
+        <h1>Summer Event</h1>
+        <p>Explore our latest stories, insights, and updates on student-led initiatives and community impact. Stay inspired and informed with our blog posts.</p>
+      </div>
+    </div>
+  </section>
+
+<!-- Events Page Hero Section Stop-->
+
+
+<!-- Individual Donation Page Section Start -->
+
+<!-- Individual Donation Page Section Start -->
+<section class="individual_donation_section">
+  <div class="individual_donation_container">
+    
+    <div class="individual_donation_top">
+      <div class="individual_donation_text">
+        <h2>Summer Events Podcast</h2>
+        <p>
+          Your contribution can bring education, food, and hope to children in Gaza. Every donation makes a difference and empowers young lives. We are collecting donations to provide essential aid and support to those affected by the ongoing crisis. Your generosity can help us deliver food, medical supplies, and educational resources to children and families in desperate need. Together, we can make a significant impact and bring hope to those who need it most.
+        </p>
+      </div>
+
+      <div class="individual_donation_video_wrapper">
+        <img src="img/Podcast Thumbnil.bmp" alt="Video Thumbnail" class="individual_donation_video_thumbnail">
+        <button class="individual_donation_video_play">&#9654;</button>
+        <video class="individual_donation_video" controls>
+          <source src="video/Podcast Video.mov" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', () => {
+  const wrapper = document.querySelector('.individual_donation_video_wrapper');
+  const video = wrapper.querySelector('.individual_donation_video');
+  const playBtn = wrapper.querySelector('.individual_donation_video_play');
+  const thumbnail = wrapper.querySelector('.individual_donation_video_thumbnail');
+
+  playBtn.addEventListener('click', () => {
+    video.style.display = 'block';        // Show video
+    thumbnail.style.display = 'none';     // Hide thumbnail
+    playBtn.style.display = 'none';       // Hide play button
+    video.play().catch(err => console.log('Video play blocked:', err));
+  });
+});
+
+</script>
+
+
+
+<!-- Individual Donation Page Section Stop -->
+
+
+<!-- Individual Donation Page Section Stop -->
+
+
+
+
+
+<!-- Footer Start -->
+
+
+<footer class="don-ft">
+  <div class="don-ft-inner">
+
+    <!-- Widgets Grid -->
+    <div class="don-ft-grid">
+
+      <!-- About -->
+      <div class="don-ft-widget about">
+        <a href="index.html"><img src="img/SF-Logo-main-300x38-w.png" alt="Donation Site Logo" class="don-ft-logo"></a>
+        <p>We are a Community Organisation run by a group of volunteers.  We have a strong purpose of empowering lives through education.</p>
+        <div class="don-ft-social">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="don-ft-widget links">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="About Us.html">About Us</a></li>
+          <li><a href="Blog.html">Our Causes</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="don-ft-widget contact">
+        <h5>Contact Us</h5>
+        <ul>
+          <li><i class="fa-regular fa-envelope"></i><a href="mailto:info@donationsite.org">info@sixteenfoundation.org</a></li>
+          <li><i class="fa-solid fa-phone"></i><a href="tel:+123456789">+1 234 567 89</a></li>
+          <li><i class="fa-solid fa-location-dot"></i>123 Hope Street, City, Country</li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="don-ft-widget newsletter">
+        <h5>Newsletter</h5>
+        <p>Subscribe to get updates on our missions and stories of change.</p>
+        <form class="newsletter-form" action="newsletter.php" method="post">
+          <input type="email" name="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+
+      <!-- Legal -->
+      <div class="don-ft-widget legal">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms & Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="don-ft-copy">
+      <p>© 2025 Donation Site. All rights reserved.</p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- footer stop -->
+
+
+</body>
+</html>

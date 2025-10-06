@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sixteen Foundation</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+<body>
+
+<!-- Navigation bar start  -->
+
+
+<header class="six_foundation_nav-header">
+    <div class="six_foundation_nav-container">
+        <div class="six_foundation_nav-logo">
+            <a href="#"><img src="img/SF-Logo-main-300x38-w.png" alt="Logo"></a>
+        </div>
+
+        <div class="six_foundation_nav-right">
+            <ul class="six_foundation_nav-menu">
+                <li class="six_foundation_nav-item"><a href="index.html" class="six_foundation_nav-link">Home</a></li>
+                <li class="six_foundation_nav-item"><a href="Donation.html" class="six_foundation_nav-link">Cause</a></li>
+                <li class="six_foundation_nav-item"><a href="Podcast.html" class="six_foundation_nav-link">Podcast</a></li>
+
+
+                <li class="six_foundation_nav-item">
+                  
+                    <a href="Blog.html" class="six_foundation_nav-link">Blog</a>
+                    <!-- <ul class="six_foundation_nav-dropdown">
+                        <li><a href="Donation.html" class="six_foundation_nav-dropdown-item">Donation</a></li>
+                        <li><a href="#" class="six_foundation_nav-dropdown-item">Podcast</a></li>
+                        <li><a href="#" class="six_foundation_nav-dropdown-item">Event</a></li>
+                    </ul> -->
+                </li>
+                
+                <li class="six_foundation_nav-item"><a href="Events.html" class="six_foundation_nav-link">Events</a></li>
+                <li class="six_foundation_nav-item"><a href="About Us.html" class="six_foundation_nav-link">About</a></li>
+                <li class="six_foundation_nav-item"><a href="Contact.html" class="six_foundation_nav-link">Contact</a></li>
+            </ul>
+
+            <button class="six_foundation_nav-donate-btn"  onclick="window.location.href='Donation.html'">Donate Now <i class="fas fa-arrow-right"></i></button>
+            <button class="six_foundation_nav-mobile-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="six_foundation_nav-mobile-menu">
+    <div class="six_foundation_nav-mobile-header">
+        <div class="six_foundation_nav-logo">
+            <a href="#"><img src="img/Mobile menu logo.png" alt="Logo"></a>
+        </div>
+        <button class="six_foundation_nav-mobile-close"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="six_foundation_nav-mobile-nav">
+
+        <div class="six_foundation_nav-mobile-item"><a href="index.html" class="six_foundation_nav-mobile-link">Home</a></div>
+         
+        
+        <!-- <div class="six_foundation_nav-mobile-item">
+            <a href="Blog.html" class="six_foundation_nav-mobile-link">Blog</a>
+            <button class="six_foundation_nav-dropdown-toggle"><i class="fas fa-chevron-down"></i></button>
+            <div class="six_foundation_nav-mobile-dropdown">
+                <a href="#" class="six_foundation_nav-mobile-dropdown-item">Web Development</a>
+                <a href="#" class="six_foundation_nav-mobile-dropdown-item">App Development</a>
+                <a href="#" class="six_foundation_nav-mobile-dropdown-item">Marketing</a>
+            </div>
+        </div> -->
+
+
+        <div class="six_foundation_nav-mobile-item"><a href="Donation.html" class="six_foundation_nav-mobile-link">Cause</a></div>
+        <div class="six_foundation_nav-mobile-item"><a href="Podcast.html" class="six_foundation_nav-mobile-link">Podcast</a></div>
+        <div class="six_foundation_nav-mobile-item"><a href="Blog.html" class="six_foundation_nav-mobile-link">Blog</a></div>
+        <div class="six_foundation_nav-mobile-item"><a href="Events.html" class="six_foundation_nav-mobile-link">Events</a></div>
+        <div class="six_foundation_nav-mobile-item"><a href="#" class="six_foundation_nav-mobile-link">Contact</a></div>
+
+
+    </div>
+    <div class="six_foundation_nav-mobile-footer">
+        <button class="six_foundation_nav-mobile-donate-btn" onclick="window.location.href='Donation.html'">Donate Now <i class="fas fa-arrow-right"></i></button>
+    </div>
+</div>
+
+<div class="six_foundation_nav-backdrop"></div>
+
+
+
+<script>
+// Navbar scroll
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.six_foundation_nav-header');
+    if(window.scrollY > 50) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+});
+
+// Mobile menu
+const mobileToggle = document.querySelector('.six_foundation_nav-mobile-toggle');
+const mobileMenu = document.querySelector('.six_foundation_nav-mobile-menu');
+const mobileClose = document.querySelector('.six_foundation_nav-mobile-close');
+const backdrop = document.querySelector('.six_foundation_nav-backdrop');
+
+mobileToggle.addEventListener('click', () => {
+    mobileMenu.classList.add('active');
+    backdrop.classList.add('active');
+    document.body.style.overflow = 'hidden';
+});
+
+function closeMobileMenu(){
+    mobileMenu.classList.remove('active');
+    backdrop.classList.remove('active');
+    document.body.style.overflow = '';
+    document.querySelectorAll('.six_foundation_nav-mobile-item').forEach(item => {
+        item.classList.remove('active');
+        const icon = item.querySelector('.six_foundation_nav-dropdown-toggle i');
+        if(icon) icon.style.transform = 'rotate(0)';
+    });
+}
+
+mobileClose.addEventListener('click', closeMobileMenu);
+backdrop.addEventListener('click', closeMobileMenu);
+
+// Mobile submenu toggle
+const dropdownToggles = document.querySelectorAll('.six_foundation_nav-dropdown-toggle');
+dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        const parentItem = toggle.closest('.six_foundation_nav-mobile-item');
+
+        // Close other open submenus
+        document.querySelectorAll('.six_foundation_nav-mobile-item.active').forEach(item => {
+            if (item !== parentItem) {
+                item.classList.remove('active');
+                const icon = item.querySelector('.six_foundation_nav-dropdown-toggle i');
+                if(icon) icon.style.transform = 'rotate(0)';
+            }
+        });
+
+        // Toggle current submenu
+        parentItem.classList.toggle('active');
+
+        // Rotate chevron
+        const icon = toggle.querySelector('i');
+        icon.style.transform = parentItem.classList.contains('active') 
+            ? 'rotate(180deg)' 
+            : 'rotate(0)';
+    });
+});
+
+// Close mobile menu when clicking on links
+document.querySelectorAll('.six_foundation_nav-mobile-link, .six_foundation_nav-mobile-dropdown-item').forEach(link => {
+    link.addEventListener('click', (e) => {
+        if (!link.nextElementSibling || !link.nextElementSibling.classList.contains('six_foundation_nav-mobile-dropdown')) {
+            closeMobileMenu();
+        }
+    });
+});
+
+// Reset on resize
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 992) {
+        closeMobileMenu();
+    }
+});
+</script>
+
+
+
+<!-- Navigation bar stop -->
+
+
+
+<!-- Donation Page Hero Section Start -->
+
+<section class="donation_page_hero_section">
+  <div class="donation_page_hero_section_bg">
+    <div class="donation_page_hero_section_content">
+      <h1>We Collect Donation for Students.</h1>
+      <p>Explore our latest stories, insights, and updates on student-led initiatives and community impact. Stay inspired and informed with our blog posts.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Donation Page Hero Section Stop -->
+
+
+
+<!-- donation page donate section start -->
+
+<section class="donation_pg_donate_section">
+  <h2>LET US MAKE THE WORLD BETTER TOGETHER</h2>
+  <p class="section-text">The Prophet Muhammad (PBUH) said: <br> "When a person dies, his deeds come to an end except for three: Sadaqah Jariyah (a continuous charity), knowledge which is beneficial, or a virtuous descendant who prays for him (for the deceased)." — Sahih Muslim 1631 </p>
+
+  <div class="donation_pg_donate_grid">
+
+
+     <!-- Card 1 -->
+    <div class="donation_pg_donate_card">
+      <img src="img/Support for Gaza Campaign.jpg" alt="Cause 1">
+      <div class="content">
+        <h3>Support For Gaza</h3>
+        <p class="description">Lets join together for our Brothers in Gaza. Stand for them with your donation. Lets reach out for a good cause.</p>
+        <div class="progress-bar">
+          <div class="progress-bar-inner" style="width: 0%;"></div>
+        </div>
+        <p class="progress-text">Raised £0 of £6,000</p>
+        <button  onclick="window.location.href='Support-For-Gaza.html'" >Read & Donate</button>
+      </div>
+    </div>
+
+
+
+
+
+    <!-- Card 1 -->
+    <div class="donation_pg_donate_card">
+      <img src="img/gaza fundrising.jpg" alt="Cause 1">
+      <div class="content">
+        <h3>VIGSA</h3>
+        <p class="description">This is a sample description of the cause. All cards have the same length of text to keep them uniform visually.</p>
+        <div class="progress-bar">
+          <div class="progress-bar-inner" style="width: 150%;"></div>
+        </div>
+        <p class="progress-text">Raised $9,603 of $5,000</p>
+        <button>Campaing Closed</button>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="donation_pg_donate_card">
+      <img src="img/Apex Secondary School.jpg" alt="Cause 2">
+      <div class="content">
+        <h3>Apex Secondary School</h3>
+        <p class="description">This is a sample description of the cause. All cards have the same length of text to keep them uniform visually.</p>
+        <div class="progress-bar">
+          <div class="progress-bar-inner" style="width: 86.14%;"></div>
+        </div>
+        <p class="progress-text">Raised £4,307 of £5,000</p>
+        <button>Campaign Closed</button>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="donation_pg_donate_card">
+      <img src="img/Madrasha Mauritania.jpg" alt="Cause 3">
+      <div class="content">
+        <h3>Madrasha 4 Mauritania</h3>
+        <p class="description">This is a sample description of the cause. All cards have the same length of text to keep them uniform visually.</p>
+        <div class="progress-bar">
+          <div class="progress-bar-inner" style="width: 100%;"></div>
+        </div>
+        <p class="progress-text">Raised £6,185 of £6000</p>
+        <button>Campaign Closed</button>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="donation_pg_donate_card">
+      <img src="img/LoteTree-Primary School.jpg" alt="Cause 4">
+      <div class="content">
+        <h3>Lote Tree Primary School</h3>
+        <p class="description">This is a sample description of the cause. All cards have the same length of text to keep them uniform visually.</p>
+        <div class="progress-bar">
+          <div class="progress-bar-inner" style="width: 100%;"></div>
+        </div>
+        <p class="progress-text">Raised $5,316 of $5,000</p>
+        <button>Campaign Closed</button>
+      </div>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="donation_pg_donate_card">
+      <img src="img/home donate 4.jpg" alt="Cause 5">
+      <div class="content">
+        <h3>AL-Zakirin School</h3>
+        <p class="description">This is a sample description of the cause. All cards have the same length of text to keep them uniform visually.</p>
+        <div class="progress-bar">
+          <div class="progress-bar-inner" style="width: 100%;"></div>
+        </div>
+        <p class="progress-text">Raised $7,025 of $5,000</p>
+        <button>Campaign Closed</button>
+      </div>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="donation_pg_donate_card">
+      <img src="img/DUJK.jpg" alt="Cause 6">
+      <div class="content">
+        <h3>Darul Uloom Jobeda Khatun</h3>
+        <p class="description">This is a sample description of the cause. All cards have the same length of text to keep them uniform visually.</p>
+        <div class="progress-bar">
+          <div class="progress-bar-inner" style="width: 100%;"></div>
+        </div>
+        <p class="progress-text">Raised $5,525 of $5,000</p>
+        <button>Campaign Closed</button>
+      </div>
+    </div>
+
+      <!-- Card 7 -->
+    <div class="donation_pg_donate_card">
+      <img src="img/Corvarha Primary School.jpg" alt="Cause 6">
+      <div class="content">
+        <h3>Corvarha Primary School</h3>
+        <p class="description">This is a sample description of the cause. All cards have the same length of text to keep them uniform visually.</p>
+        <div class="progress-bar">
+          <div class="progress-bar-inner" style="width: 100%;"></div>
+        </div>
+        <p class="progress-text">Raised $5,041 of $5,000</p>
+        <button>Campaign Closed</button>
+      </div>
+    </div>
+
+
+     <!-- Card 8 -->
+    <div class="donation_pg_donate_card">
+      <img src="img/Darul Ihsan.jpg" alt="Cause 6">
+      <div class="content">
+        <h3>Darul Ihsan</h3>
+        <p class="description">This is a sample description of the cause. All cards have the same length of text to keep them uniform visually.</p>
+        <div class="progress-bar">
+          <div class="progress-bar-inner" style="width: 100%;"></div>
+        </div>
+        <p class="progress-text">Raised $5,206 of $5,000</p>
+        <button>Campaign Closed</button>
+      </div>
+    </div>
+
+
+     <!-- Card 8 -->
+    <div class="donation_pg_donate_card">
+      <img src="img/AlRawda-Publications.jpg" alt="Cause 6">
+      <div class="content">
+        <h3>Al Rawda Educational Institution</h3>
+        <p class="description">This is a sample description of the cause. All cards have the same length of text to keep them uniform visually.</p>
+        <div class="progress-bar">
+          <div class="progress-bar-inner" style="width: 96.18%;"></div>
+        </div>
+        <p class="progress-text">Raised $4,809 of $5,000</p>
+        <button>Campaign Closed</button>
+      </div>
+    </div>
+
+
+    <!-- Card 9 -->
+    <div class="donation_pg_donate_card">
+      <img src="img/DarulIrfanCause-400x300.jpg" alt="Cause 6">
+      <div class="content">
+        <h3>Darul Irfan Hifzal Qur’an Madrasah</h3>
+        <p class="description">This is a sample description of the cause. All cards have the same length of text to keep them uniform visually.</p>
+        <div class="progress-bar">
+          <div class="progress-bar-inner" style="width: 100%;"></div>
+        </div>
+        <p class="progress-text">Raised £3,321 of £2,000</p>
+        <button>Campaign Closed</button>
+      </div>
+    </div>
+
+
+
+
+
+
+  </div>
+<!-- 
+  <div class="donation_pg_donate_sec_more_btn_wrapper">
+    <a href="Blog.html"> <button class="donation_pg_blog_more_btn">Find Causes</button> </a>
+  </div> -->
+
+</section>
+
+<!-- donation page donate section stop -->
+
+
+
+
+<!-- Footer Start -->
+
+
+<footer class="don-ft">
+  <div class="don-ft-inner">
+
+    <!-- Widgets Grid -->
+    <div class="don-ft-grid">
+
+      <!-- About -->
+      <div class="don-ft-widget about">
+        <a href="index.html"><img src="img/SF-Logo-main-300x38-w.png" alt="Donation Site Logo" class="don-ft-logo"></a>
+        <p>We are a Community Organisation run by a group of volunteers.  We have a strong purpose of empowering lives through education.</p>
+        <div class="don-ft-social">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="don-ft-widget links">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="About Us.html">About Us</a></li>
+          <li><a href="Blog.html">Our Causes</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="donate.html">Donate</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="don-ft-widget contact">
+        <h5>Contact Us</h5>
+        <ul>
+          <li><i class="fa-regular fa-envelope"></i><a href="mailto:info@donationsite.org">info@sixteenfoundation.org</a></li>
+          <li><i class="fa-solid fa-phone"></i><a href="tel:+123456789">+1 234 567 89</a></li>
+          <li><i class="fa-solid fa-location-dot"></i>123 Hope Street, City, Country</li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="don-ft-widget newsletter">
+        <h5>Newsletter</h5>
+        <p>Subscribe to get updates on our missions and stories of change.</p>
+        <form class="newsletter-form" action="newsletter.php" method="post">
+          <input type="email" name="email" placeholder="Enter your email" required>
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+
+      <!-- Legal -->
+      <div class="don-ft-widget legal">
+        <h5>Legal</h5>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms & Conditions</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="don-ft-copy">
+      <p>© 2025 Donation Site. All rights reserved.</p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- footer stop -->
+
+</body>
+</html>
+
+
+
+

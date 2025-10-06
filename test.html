@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Optional: Custom Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#111827', // custom dark
+            secondary: '#6B7280', // gray
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- About Us Section -->
+  <section class="bg-gray-50 py-16 px-4">
+    <!-- Heading -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h2 class="text-4xl font-bold text-primary mb-4">About Us</h2>
+      <p class="text-secondary text-lg">
+        We are dedicated to delivering top-quality solutions that empower businesses and inspire creativity. 
+        Our team thrives on innovation, collaboration, and excellence.
+      </p>
+    </div>
+
+    <!-- Media Gallery -->
+    <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="overflow-hidden rounded-xl">
+        <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80" 
+             alt="Team working together" 
+             class="w-full h-64 object-cover transform transition-transform duration-300 hover:scale-105">
+      </div>
+      <div class="overflow-hidden rounded-xl">
+        <img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=800&q=80" 
+             alt="Office environment" 
+             class="w-full h-64 object-cover transform transition-transform duration-300 hover:scale-105">
+      </div>
+      <div class="overflow-hidden rounded-xl">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=800&q=80" 
+             alt="Creative brainstorming" 
+             class="w-full h-64 object-cover transform transition-transform duration-300 hover:scale-105">
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .about-page-section {
+            position: relative;
+            padding: 130px 0 100px;
+            z-index: 1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin: 0 -15px;
+        }
+        
+        .col-lg-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+            padding: 0 15px;
+        }
+        
+        .about-page-content {
+            margin-bottom: 65px;
+        }
+        
+        .section-title {
+            margin-bottom: 25px;
+        }
+        
+        .sub-title {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            color: #4a6cf7;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        h2 {
+            font-size: 42px;
+            font-weight: 700;
+            color: #1e293b;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 16px;
+            color: #64748b;
+            margin-bottom: 30px;
+        }
+        
+        .list-style-one {
+            list-style: none;
+            margin: 30px 0 45px;
+            padding-left: 0;
+        }
+        
+        .list-style-one li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #334155;
+        }
+        
+        .list-style-one li:before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: #4a6cf7;
+            font-size: 18px;
+        }
+        
+        .theme-btn {
+            display: inline-block;
+            background-color: #4a6cf7;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 14px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(74, 108, 247, 0.3);
+        }
+        
+        .theme-btn:hover {
+            background-color: #3a5bd9;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(74, 108, 247, 0.4);
+        }
+        
+        .theme-btn i {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .theme-btn:hover i {
+            transform: translateX(5px);
+        }
+        
+        .about-page-images {
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+            min-height: 400px;
+        }
+        
+        .about-page-images img {
+            border-radius: 10px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: transform 0.5s ease;
+            background-color: #e2e8f0;
+            border: 2px solid #cbd5e1;
+        }
+        
+        .about-page-images img:first-child {
+            position: absolute;
+            top: -30px;
+            left: 0;
+            z-index: 2;
+            width: 60%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        .about-page-images img:last-child {
+            z-index: 1;
+            width: 80%;
+            height: auto;
+            object-fit: cover;
+        }
+        
+        .about-page-images:hover img:first-child {
+            transform: translateY(-10px);
+        }
+        
+        .about-page-images:hover img:last-child {
+            transform: translateY(10px);
+        }
+        
+        /* Animation classes */
+        .wow {
+            visibility: hidden;
+        }
+        
+        .fadeInLeft {
+            animation-name: fadeInLeft;
+        }
+        
+        .fadeInRight {
+            animation-name: fadeInRight;
+        }
+        
+        .delay-0-2s {
+            animation-delay: 0.2s;
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translate3d(-30px, 0, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translate3d(30px, 0, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        .animated {
+            visibility: visible !important;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .col-lg-6 {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+            
+            .about-page-images {
+                justify-content: center;
+                margin-top: 40px;
+                min-height: 300px;
+            }
+            
+            .about-page-images img:first-child {
+                position: relative;
+                top: auto;
+                left: auto;
+                width: 70%;
+                margin-bottom: 30px;
+            }
+            
+            .about-page-images img:last-child {
+                width: 70%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h2 {
+                font-size: 32px;
+            }
+            
+            .about-page-section {
+                padding: 80px 0 60px;
+            }
+            
+            .about-page-images {
+                min-height: 250px;
+            }
+            
+            .about-page-images img:first-child,
+            .about-page-images img:last-child {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="about-page-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="about-page-content wow fadeInLeft delay-0-2s">
+                        <div class="section-title">
+                            <span class="sub-title">About Company</span>
+                            <h2>We Are Professional and Creative Saas Solutions</h2>
+                        </div>
+                        <p>Sed ut perspiciatis unde omnis natus error voluptatem accusantium dolore laudantium totam rem aperiam eaqupsa quae ainventore veritatis quas architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit sed quia consequuntur magni dolores eos qui ratione voluptatem.</p>
+                        <ul class="list-style-one">
+                            <li>30-day free trial of our premium plan</li>
+                            <li>100% Free - No payments required</li>
+                            <li>Lifetime Upgradate</li>
+                        </ul>
+                        <a href="about.html" class="theme-btn">Get Started <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-page-images wow fadeInRight delay-0-2s">
+                        <img src="https://picsum.photos/seed/about1/600/400.jpg" alt="About">
+                        <img src="https://picsum.photos/seed/about2/600/400.jpg" alt="About">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Simple animation trigger on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const wowElements = document.querySelectorAll('.wow');
+            
+            function checkVisibility() {
+                wowElements.forEach(element => {
+                    const position = element.getBoundingClientRect();
+                    
+                    // If element is in viewport
+                    if(position.top < window.innerHeight && position.bottom >= 0) {
+                        element.classList.add('animated');
+                    }
+                });
+            }
+            
+            // Initial check
+            checkVisibility();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkVisibility);
+            
+            // Check on resize
+            window.addEventListener('resize', checkVisibility);
+        });
+    </script>
+</body>
+</html> 
+
+
